@@ -59,7 +59,6 @@ import ContactCard from "@/components/ContactCard.vue";
 import InputSearch from "@/components/InputSearch.vue";
 import ContactList from "@/components/ContactList.vue";
 import ContactService from "@/services/contact.service";
-
 export default {
     components: {
         ContactCard,
@@ -91,15 +90,15 @@ export default {
         // Trả về các contact có chứa thông tin cần tìm kiếm.
         filteredContacts() {
             if (!this.searchText) return this.contacts;
-            return this.contacts.filter((contact, index) =>
+            return this.contacts.filter((contact, index) =>              
                 this.contactStrings[index].includes(this.searchText)
             );
         },
         activeContact() {
             if (this.activeIndex < 0) return null;
-            return this.contacts[this.activeIndex];
+            return this.filteredContacts[this.activeIndex];
         },
-        contactCount() {
+        contactCount() {                          
             return this.filteredContacts.length;
         },
     },
@@ -111,12 +110,10 @@ export default {
                 console.log(error);
             }
         },
-
         refreshList() {
             this.retrieveContacts();
             this.activeIndex = -1;
         },
-
         async removeAllContacts() {
             if (confirm("Bạn muốn xóa tất cả Liên hệ?")) {
                 try {
@@ -127,7 +124,6 @@ export default {
                 }
             }
         },
-
         goToAddContact() {
             this.$router.push({ name: "AddContact" });
         },

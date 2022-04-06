@@ -5,21 +5,21 @@ export default {
         activeIndex: { type: Number, default: -1 },
     },
     emits: ["update:activeIndex"],
-    watch: {
-        activeIndex(newValue) {
-            if (newValue === -1) {
-                this.selected = -1;
-            }
-        },
-    },
-    data() {
-        return {
-            selected: this.activeIndex,
-        };
-    },
+    // watch: {
+    //     activeIndex(newValue) {
+    //         if (newValue === -1) {
+    //             this.selected = -1;
+    //         }
+    //     },
+    // },
+    // data() {
+    //     return {
+    //         selected: this.activeIndex,
+    //     };
+    // },
     methods: {
         select(index) {
-            this.selected = index;
+            // this.selected = index;
             this.$emit("update:activeIndex", index);
         },
     },
@@ -32,7 +32,7 @@ export default {
             class="list-group-item"
             v-for="(contact, index) in contacts"
             :key="contact.id"
-            :class="{ active: index === selected }"
+            :class="{ active: index === activeIndex }"
             @click="select(index)"
         >
             {{ contact.name }}
